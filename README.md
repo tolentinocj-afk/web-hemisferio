@@ -1,4 +1,4 @@
-# HEMISFERIO · Sitio web v3
+# HEMISFERIO · Sitio web v4
 
 Sitio estático (HTML, CSS y JavaScript, sin dependencias). Se publica en cualquier hosting estático (Netlify, Vercel, GitHub Pages, cPanel).
 
@@ -18,6 +18,29 @@ build_preview.py                 Genera dist/hemisferio-vista-previa.html (un so
 ```
 
 Revisión interna de datos faltantes: abrir `index.html#revision`.
+
+## Cambios de la versión 4
+
+Técnico:
+- Política de privacidad en `politica-de-privacidad/` (Ley N.° 29733), enlazada desde el pie, Mica y el Libro de Reclamaciones.
+- Datos estructurados JSON-LD en `index.html`: centro (Physiotherapy), directora con CTMP N.° 19389, sitio y página.
+- `robots.txt` (permite buscadores con IA), `sitemap.xml`, `llms.txt`, `manifest.webmanifest`, `.nojekyll`.
+- Ícono provisional del navegador recortado del símbolo del logo (`assets/img/favicon-32.png`, `icono-*.png`). Reemplazar por el isotipo oficial cuando exista.
+- Fecha de revisión visible en el pie (`sitio.revision` en `js/config.js`).
+- La URL pública está fijada en `https://tolentinocj-afk.github.io/web-hemisferio/`. Al contratar dominio, cambiarla en `js/config.js`, `index.html` (canonical, og y JSON-LD), `politica-de-privacidad/index.html`, `robots.txt`, `sitemap.xml` y `llms.txt`.
+
+Mica:
+- Pide consentimiento antes del nombre y permite continuar sin darlo.
+- Oculta contraseñas, claves y números de tarjeta antes de mostrarlos y no procesa ese mensaje.
+- Respuestas editables en `js/mica-conocimiento.js`, con un espacio `preguntas` para preguntas frecuentes reales.
+
+Diseño:
+- Portada con 4 elementos (logo, lema, texto y botones); el botón principal entra en la primera pantalla desde 1280 × 720.
+- Franja de respaldo profesional bajo la portada (Bobath, CTMP, maestría, sede).
+- Propósito como declaración sin foto, para no repetir tres bloques seguidos de foto y texto.
+- Etiquetas pequeñas sobre títulos reducidas de 8 a 2; encabezados apilados en Cómo trabajamos y Casos.
+- Íconos de la librería Tabler Icons (licencia MIT) en lugar de dibujos propios; sin puntos decorativos.
+- Áreas complementarias en mosaico con foto y fondos diferenciados.
 
 ## Cambios de la versión 3
 

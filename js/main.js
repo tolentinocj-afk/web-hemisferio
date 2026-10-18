@@ -20,6 +20,13 @@
     return n;
   }
   function safeUrl(u) { return /^https?:\/\//i.test(String(u || "").trim()) ? String(u).trim() : ""; }
+  /* Acepta URL absolutas o rutas relativas del propio sitio (no javascript:, data:) */
+  function siteUrl(u) {
+    u = String(u || "").trim();
+    if (!u) return "";
+    if (/^https?:\/\//i.test(u)) return u;
+    return /^[a-z][a-z0-9+.-]*:/i.test(u) ? "" : u;
+  }
 
   /* ---------- Utilidades compartidas con Mica y el Libro ---------- */
   var waNumber = String(contacto.whatsapp || "").replace(/\D/g, "");
@@ -28,7 +35,7 @@
     var msg = text || contacto.mensajeWhatsapp || "Hola, quisiera agendar una evaluación en HEMISFERIO.";
     return "https://wa.me/" + waNumber + "?text=" + encodeURIComponent(msg);
   }
-  window.HEMISFERIO = { config: C, hasWa: hasWa, waLink: waLink, has: has, el: el, safeUrl: safeUrl };
+  window.HEMISFERIO = { config: C, hasWa: hasWa, waLink: waLink, has: has, el: el, safeUrl: safeUrl, siteUrl: siteUrl };
 
   /* ---------- Botones de evaluación ---------- */
   $$("[data-cta]").forEach(function (a) {
@@ -158,13 +165,22 @@
   }
   var legalLinks = $("[data-legal-links]");
   if (legalLinks) {
-    var pp = safeUrl(legal.politicaPrivacidadUrl);
+    var pp = siteUrl(legal.politicaPrivacidadUrl);
     if (pp) {
       var li = el("li");
-      li.appendChild(el("a", { href: pp, target: "_blank", rel: "noopener" }, "Política de privacidad"));
+      li.appendChild(el("a", { href: pp }, "Política de privacidad"));
       legalLinks.appendChild(li);
     }
     legalLinks.hidden = legalLinks.children.length === 0;
+  }
+  var rev = $("[data-revision]");
+  var sitio = C.sitio || {};
+  if (rev && /^\d{4}-\d{2}-\d{2}$/.test(sitio.revision || "")) {
+    var meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+    var pr = sitio.revision.split("-");
+    rev.textContent = "Última revisión: " + (+pr[2]) + " de " + meses[+pr[1] - 1] + " de " + pr[0];
+    rev.setAttribute("datetime", sitio.revision);
+    rev.hidden = false;
   }
   var y = $("[data-year]");
   if (y) y.textContent = new Date().getFullYear();
@@ -214,6 +230,7 @@
   }
 
   /* ---------- Panel de revisión interna ---------- */
+  function KBfaq() { return ((window.MICA_CONOCIMIENTO || {}).preguntas || []).length > 0; }
   function showReview() {
     var panel = $("[data-review]");
     if (!panel) return;
@@ -228,7 +245,8 @@
     if (!has(legal.ruc)) faltan.push("RUC de la sociedad (legal.ruc)");
     if (!has(legal.codigoRenipress)) faltan.push("Código RENIPRESS (legal.codigoRenipress)");
     if (!safeUrl(legal.libroEndpoint)) faltan.push("Servicio del Libro de Reclamaciones (legal.libroEndpoint)");
-    if (!safeUrl(legal.politicaPrivacidadUrl)) faltan.push("Política de privacidad (legal.politicaPrivacidadUrl)");
+    if (!siteUrl(legal.politicaPrivacidadUrl)) faltan.push("Política de privacidad (legal.politicaPrivacidadUrl)");
+    if (!(KBfaq())) faltan.push("Preguntas frecuentes reales (js/mica-conocimiento.js y sección FAQ)");
     panel.appendChild(el("h2", null, "Revisión interna: " + faltan.length + " datos por completar"));
     var ul = el("ul");
     faltan.forEach(function (f) { ul.appendChild(el("li", null, f)); });

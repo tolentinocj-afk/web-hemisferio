@@ -39,6 +39,12 @@
   var LIC = "la Lic. " + (pro.nombre ? pro.nombre.split(" ").slice(0, 2).join(" ") : "a cargo");
   var TEL = contacto.telefono || "";
   var EMERG = micaCfg.telefonoEmergencias || "106";
+  var KB = window.MICA_CONOCIMIENTO || {};
+  var POLICY = (C.legal || {}).politicaPrivacidadUrl || "";
+  function kb(key, fallback) {
+    var v = KB[key] || fallback || [];
+    return (Array.isArray(v) ? v : [v]).map(function (t) { return String(t).replace(/\{lic\}/g, LIC).replace(/\{tel\}/g, TEL); });
+  }
 
   /* ---------- Áreas ---------- */
   var AREAS = {
@@ -165,6 +171,12 @@
         b.appendChild(wrap);
       }
       if (p.note) b.appendChild(el("p", { "class": "msg-note" }, p.note));
+      if (p.link && p.link.href) {
+        var lp = el("p", { "class": "msg-note" });
+        var la = el("a", { href: p.link.href, target: "_blank", rel: "noopener" }, p.link.label);
+        lp.appendChild(la);
+        b.appendChild(lp);
+      }
     });
   }
 
@@ -184,6 +196,7 @@
           renderParts(b, parts);
           scroll();
           if (replies) setQuick(replies);
+          scroll();
           resolve();
         }, reduce ? 0 : 420);
       });
@@ -261,7 +274,7 @@
       parts.push("Nuestro horario:");
       parts.push({ list: contacto.horario });
     } else {
-      parts.push("El día y la hora de tu evaluación se coordinan directamente con " + LIC + ", según su disponibilidad.");
+      kb("horarioSinDatos").forEach(function (t) { parts.push(t); });
     }
     var acts = [];
     if (H.safeUrl(contacto.mapsUrl)) acts.push({ label: "Ver en el mapa", href: contacto.mapsUrl });
@@ -271,11 +284,9 @@
   }
 
   function prices() {
-    bot([
-      "Los costos dependen del tipo de evaluación y del plan de atención que se defina para cada persona.",
-      "Para darte información exacta, " + LIC + " te los confirma por WhatsApp o por teléfono" + (TEL ? " al " + TEL : "") + ".",
+    bot(kb("costos").concat([
       { actions: contactActions("Hola, quisiera información sobre los costos de la evaluación en HEMISFERIO.") }
-    ], ["Ayúdame a preparar mi solicitud", "Tengo otra pregunta"]);
+    ]), ["Ayúdame a preparar mi solicitud", "Tengo otra pregunta"]);
   }
 
   function aboutPro() {
@@ -290,16 +301,16 @@
   function homeVisit() {
     var mods = (contacto.modalidades || []).join(" ").toLowerCase();
     if (mods.indexOf("domicilio") > -1) {
-      bot(["Sí, contamos con atención a domicilio. Escríbenos para coordinar la zona y el horario.", { actions: contactActions("Hola, quisiera información sobre la atención a domicilio.") }], ["Tengo otra pregunta"]);
+      bot(kb("domicilioSi").concat([{ actions: contactActions("Hola, quisiera información sobre la atención a domicilio.") }]), ["Tengo otra pregunta"]);
     } else {
-      bot(["La atención se realiza en nuestra sede de San Miguel. Si necesitas otra modalidad, consúltalo por WhatsApp y " + LIC + " te dirá si es posible en tu caso.",
-        { actions: contactActions("Hola, quisiera consultar si es posible la atención a domicilio.") }], ["Tengo otra pregunta"]);
+      bot(kb("domicilioNo").concat([
+        { actions: contactActions("Hola, quisiera consultar si es posible la atención a domicilio.") }]), ["Tengo otra pregunta"]);
     }
   }
 
   function insurance() {
-    bot(["Para consultas sobre seguros, EPS, comprobantes o formas de pago, escríbenos y te respondemos directamente.",
-      { actions: contactActions("Hola, tengo una consulta sobre seguros o formas de pago.") }], ["Tengo otra pregunta"]);
+    bot(kb("seguros").concat([
+      { actions: contactActions("Hola, tengo una consulta sobre seguros o formas de pago.") }]), ["Tengo otra pregunta"]);
   }
 
   function claims() {
@@ -344,9 +355,17 @@
       ["Prefiero conversarlo en la evaluación"]);
   }
 
+  var CONSENT_OK = "Acepto y continúo";
+  var CONSENT_SKIP = "Continuar sin dar mi nombre";
+  function askConsent() {
+    state.step = "consent";
+    var parts = kb("consentimiento");
+    if (POLICY) parts.push({ link: { label: "Ver política de privacidad", href: POLICY } });
+    bot(parts, [CONSENT_OK, CONSENT_SKIP]);
+  }
   function askName() {
     state.step = "name";
-    bot("Ya casi terminamos. ¿Cómo te llamas? Así " + LIC + " sabrá con quién conversa.");
+    bot("Gracias. ¿Cómo te llamas? Así " + LIC + " sabrá con quién conversa.");
   }
 
   function finish() {
@@ -354,7 +373,7 @@
     var d = state.data;
     var area = AREAS[d.area || "general"];
     var lines = [
-      "Hola, soy " + d.name + ". Quisiera agendar una evaluación en HEMISFERIO.",
+      (d.name ? "Hola, soy " + d.name + ". " : "Hola. ") + "Quisiera agendar una evaluación en HEMISFERIO.",
       "- Paciente: " + WHO_SHORT[d.who || "yo"],
       "- Motivo: " + d.problem
     ];
@@ -368,7 +387,7 @@
     if (d.goal) summary.push(["Objetivo:", d.goal]);
 
     var parts = [
-      "Gracias por contarme, " + d.name + ". Esto es lo que entendí:",
+      "Gracias por contarme" + (d.name ? ", " + d.name : "") + ". Esto es lo que entendí:",
       { list: summary }
     ];
     if (d.area && d.area !== "general") {
@@ -404,6 +423,8 @@
 
   function handleFree(text) {
     var t = norm(text);
+    var faq = (KB.preguntas || []).filter(function (q) { return (q.claves || []).some(function (k) { return t.indexOf(norm(k).trim()) > -1; }); })[0];
+    if (faq) return bot(kb(null, faq.respuesta).concat([{ actions: contactActions() }]), ["Tengo otra pregunta", "Quiero agendar una evaluación"]);
     var it = intent(t);
     var infoOnly = ["claims", "prices", "location", "insurance", "home", "pro"];
     if (looksLikeProblem(t) && infoOnly.indexOf(it) === -1) {
@@ -433,10 +454,35 @@
   }
 
   /* ---------- Entrada del usuario ---------- */
+  /* Datos sensibles: se ocultan antes de mostrarlos o usarlos */
+  function luhn(d) {
+    var sum = 0, alt = false;
+    for (var i = d.length - 1; i >= 0; i--) { var n = +d[i]; if (alt) { n *= 2; if (n > 9) n -= 9; } sum += n; alt = !alt; }
+    return sum % 10 === 0;
+  }
+  function redact(text) {
+    var hitSensitive = false;
+    var out = text.replace(/(?:\d[ -]?){13,19}/g, function (m) {
+      var d = m.replace(/\D/g, "");
+      if (d.length >= 13 && d.length <= 19 && luhn(d)) { hitSensitive = true; return "•••• •••• •••• " + d.slice(-4); }
+      return m;
+    });
+    out = out.replace(/\b(contrase(?:ñ|n)a|password|clave(?: sol| de acceso| secreta)?|pin|cvv|cvc|c[oó]digo de seguridad|usuario sol)\b(\s*(?:es|:|=)\s*)(\S+)/gi, function (m, k, sep) {
+      hitSensitive = true; return k + sep + "••••••";
+    });
+    return { text: out, flagged: hitSensitive };
+  }
+
   function send(raw) {
-    var text = String(raw || "").trim();
+    var r = redact(String(raw || "").trim());
+    var text = r.text;
     if (!text) return;
     user(text);
+    if (r.flagged) {
+      /* No se procesa un mensaje con datos sensibles: se avisa y se retoma */
+      bot(kb("datoSensible"));
+      return state.step === "idle" || state.step === "done" ? bot("¿En qué más te puedo ayudar?", MENU) : resume();
+    }
     var t = norm(text);
 
     if (CRISIS.test(t)) return crisis();
@@ -476,7 +522,11 @@
         return askGoal();
       case "goal":
         state.data.goal = /prefiero/.test(t) ? "" : text.slice(0, 200);
-        return askName();
+        return askConsent();
+      case "consent":
+        if (text === CONSENT_SKIP || /(sin (dar )?mi nombre|no quiero|prefiero no)/.test(t)) { state.data.name = ""; return finish(); }
+        if (text === CONSENT_OK || /(acepto|si|ok|de acuerdo|continuar)/.test(t)) return askName();
+        return bot("¿Deseas continuar dándome tu nombre?", [CONSENT_OK, CONSENT_SKIP]);
       case "name": {
         var name = text.replace(/^(soy|me llamo|mi nombre es)\s+/i, "").slice(0, 40);
         state.data.name = name.charAt(0).toUpperCase() + name.slice(1);
@@ -493,6 +543,7 @@
       case "problem": return askProblem();
       case "time": return askTime();
       case "goal": return askGoal();
+      case "consent": return askConsent();
       case "name": return askName();
       default: return bot("Sigamos. ¿En qué te puedo ayudar?", MENU);
     }

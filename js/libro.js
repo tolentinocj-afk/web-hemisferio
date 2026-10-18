@@ -59,7 +59,13 @@
   dlg.querySelector("[data-privacy-text]").textContent =
     "Responsable: " + RAZON + (legal.domicilioFiscal ? ", " + legal.domicilioFiscal : "") + ". " +
     "Finalidad: registrar, investigar y responder tu reclamo, y cumplir las obligaciones del D.S. N.° 002-2019-SA, incluida su conservación por el plazo legal y su remisión a SUSALUD cuando esta lo solicite. " +
-    "No usaremos estos datos con fines comerciales. Puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición escribiendo a " + CORREO + " (Ley N.° 29733 y su reglamento).";
+    "No usaremos estos datos con fines comerciales. Puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición escribiendo a " + CORREO + " (Ley N.° 29733 y su reglamento). Más información en nuestra política de privacidad.";
+  var ppUrl = H.siteUrl ? H.siteUrl(legal.politicaPrivacidadUrl) : "";
+  if (ppUrl) {
+    var ppA = el("a", { href: ppUrl, target: "_blank", rel: "noopener" }, "Ver política de privacidad");
+    var ppP = el("p"); ppP.appendChild(ppA);
+    dlg.querySelector("[data-privacy-text]").parentNode.appendChild(ppP);
+  }
 
   /* ---------- Interacción ---------- */
   var repFields = rep.querySelectorAll("input, select");

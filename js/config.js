@@ -86,7 +86,15 @@ window.HEMISFERIO_CONFIG = {
     libroEndpoint: "",
     plazoRespuestaDias: 30,
 
-    politicaPrivacidadUrl: ""
+    politicaPrivacidadUrl: "politica-de-privacidad/"
+  },
+
+  /* Sitio: URL pública y fecha de la última revisión de contenidos.
+     Cambiar url al contratar el dominio propio (y actualizar sitemap.xml,
+     robots.txt, llms.txt y el bloque JSON-LD de index.html). */
+  sitio: {
+    url: "https://tolentinocj-afk.github.io/web-hemisferio/",
+    revision: "2026-10-18"
   },
 
   modoRevision: false

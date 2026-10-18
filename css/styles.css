@@ -183,7 +183,7 @@ h2 { font-size: var(--fs-xl); }
 @media (min-width: 1200px) { .nav { display: flex; align-items: center; } }
 
 /* ---------- B. Portada ---------- */
-.hero { padding-block: clamp(2rem, 1.5rem + 3vw, 4.5rem) clamp(3.5rem, 3rem + 4vw, 6.5rem); position: relative; overflow: hidden; isolation: isolate; background: var(--marfil); }
+.hero { padding-block: clamp(1.75rem, 1rem + 2.5vw, 3.5rem) clamp(3rem, 2.5rem + 3vw, 5rem); position: relative; overflow: hidden; isolation: isolate; background: var(--marfil); }
 .hero::before {
   /* media esfera clara detrás de la fotografía */
   content: ""; position: absolute; z-index: -1;
@@ -197,8 +197,10 @@ h2 { font-size: var(--fs-xl); }
 .hero-copy { min-width: 0; max-width: 600px; }
 /* Logo maestro como bloque, a 600 px (tamaño de partida del manual 1.2) */
 .hero-logo { margin: 0; line-height: 0; }
-.hero-logo img { width: 600px; max-width: 100%; height: auto; }
-.hero-tagline { margin-top: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); font-size: clamp(1.9rem, 1.4rem + 2.2vw, 3.1rem); font-weight: 700; color: var(--azul); letter-spacing: -0.025em; line-height: 1.08; text-wrap: balance; }
+/* El logo maestro se usa completo. En laptops se reduce para que el botón principal
+   quede en la primera pantalla; el descriptor también figura como texto en el encabezado. */
+.hero-logo img { width: clamp(400px, 34vw, 600px); max-width: 100%; height: auto; }
+.hero-tagline { margin-top: clamp(1.25rem, 1rem + 1vw, 1.75rem); font-size: clamp(1.9rem, 1.3rem + 1.9vw, 2.9rem); font-weight: 700; color: var(--azul); letter-spacing: -0.025em; line-height: 1.08; text-wrap: balance; }
 .hero-sub { margin-top: 1rem; font-size: var(--fs-lg); color: var(--azul); line-height: 1.45; max-width: 32ch; }
 .hero-text { margin-top: 1rem; color: var(--tinta-suave); max-width: 44ch; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 2rem; }
@@ -277,7 +279,7 @@ h2 { font-size: var(--fs-xl); }
 .conditions { display: grid; gap: .55rem 2rem; margin-top: .25rem; }
 @media (min-width: 560px) { .conditions { grid-template-columns: 1fr 1fr; } .conditions .wide { grid-column: 1 / -1; } }
 .conditions li { display: flex; gap: 12px; align-items: baseline; color: var(--blanco); font-size: var(--fs-sm); }
-.conditions li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--dorado); flex: none; transform: translateY(-2px); }
+.cond-icon { width: 16px; height: 16px; flex: none; color: var(--dorado); transform: translateY(2px); }
 .note { font-size: var(--fs-sm); color: var(--sobre-azul-suave); margin-top: .5rem; }
 .neuro-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2rem; margin-top: 1.25rem; padding-top: 1.5rem; border-top: 1px solid rgba(233, 238, 243, .22); }
 .backing { font-size: var(--fs-sm); color: var(--blanco); max-width: 30ch; }
@@ -643,7 +645,8 @@ body.mica-open .floaters { display: none; }
 .has-smile { position: relative; }
 .has-smile::after {
   content: ""; position: absolute; top: -8px; right: -10px; width: 20px; height: 20px; pointer-events: none;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23F4C542' stroke='%23ffffff' stroke-width='2'/%3E%3Ccircle cx='8.6' cy='9.8' r='1.5' fill='%23123858'/%3E%3Ccircle cx='15.4' cy='9.8' r='1.5' fill='%23123858'/%3E%3Cpath d='M7.6 13.6c1.1 2.1 2.7 3.1 4.4 3.1s3.3-1 4.4-3.1' fill='none' stroke='%23123858' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  /* Tabler Icons "mood-smile" (MIT) sobre disco amarillo */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11.5' fill='%23F4C542' stroke='%23ffffff' stroke-width='1.5'/%3E%3Cg fill='none' stroke='%23123858' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 10l.01 0'/%3E%3Cpath d='M15 10l.01 0'/%3E%3Cpath d='M9.5 15a3.5 3.5 0 0 0 5 0'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
 }
 .mica-dot-lg.has-smile::after { width: 22px; height: 22px; top: -7px; right: -9px; }
 .mica-launcher .has-smile::after { width: 25px; height: 25px; top: -13px; right: -14px; }
@@ -670,7 +673,7 @@ body.mica-open .floaters { display: none; }
 @media (min-width: 860px) { .casos-grid { grid-template-columns: 1fr 1fr; } }
 .caso { background: var(--blanco); border-radius: var(--radius); padding: clamp(1.4rem, 1rem + 1.5vw, 2.1rem); display: flex; flex-direction: column; gap: .85rem; min-width: 0; }
 .caso-tag { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--azul-apoyo); display: flex; align-items: center; gap: 10px; }
-.caso-tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--dorado); flex: none; }
+
 .caso h3 { font-size: var(--fs-lg); line-height: 1.25; }
 .caso dl { display: grid; gap: .25rem; }
 .caso dt { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--azul); margin-top: .7rem; padding-top: .7rem; border-top: 1px solid var(--linea); }
@@ -687,3 +690,75 @@ body.mica-open .floaters { display: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* =========================================================================
+   Versión 4: correcciones de diseño
+   ========================================================================= */
+
+/* Íconos (Tabler Icons, MIT) */
+.wa-icon { width: 24px; height: 24px; flex: none; }
+.ui-icon { width: 20px; height: 20px; }
+.ok-icon { width: 32px; height: 32px; flex: none; color: var(--azul-apoyo); }
+.claims-icon { width: 34px; height: 34px; flex: none; }
+
+/* Franja de respaldo profesional */
+.creds { background: var(--azul); color: var(--sobre-azul); }
+.creds-list { display: grid; grid-template-columns: 1fr; padding-block: 1.25rem; }
+.creds-list li { display: flex; align-items: center; gap: 14px; padding-block: .9rem; min-width: 0; }
+.creds-list li + li { border-top: 1px solid rgba(233, 238, 243, .16); }
+.creds-icon { width: 30px; height: 30px; flex: none; color: var(--dorado); }
+.creds-list strong { display: block; color: var(--blanco); font-size: var(--fs-sm); line-height: 1.3; }
+.creds-list span { display: block; color: var(--sobre-azul-suave); font-size: var(--fs-xs); line-height: 1.4; margin-top: 2px; }
+@media (min-width: 640px) {
+  .creds-list { grid-template-columns: repeat(2, 1fr); column-gap: 2rem; }
+  .creds-list li + li { border-top: 0; }
+}
+@media (min-width: 1080px) {
+  .creds-list { grid-template-columns: repeat(4, 1fr); padding-block: 1.6rem; }
+  .creds-list li { padding-block: .25rem; }
+  .creds-list li + li { border-left: 1px solid rgba(233, 238, 243, .16); padding-left: 2rem; }
+}
+
+/* Propósito como declaración, sin fotografía */
+.manifesto { display: grid; gap: 1.25rem; }
+.manifesto h2 { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem); max-width: 18ch; letter-spacing: -0.025em; }
+.manifesto .lead { font-size: var(--fs-lg); max-width: 46ch; }
+.manifesto-cols { display: grid; gap: 1rem 3rem; margin-top: .75rem; color: var(--tinta-suave); }
+@media (min-width: 820px) { .manifesto-cols { grid-template-columns: 1fr 1fr; max-width: 62rem; } }
+.who-list li { border-top-color: var(--linea); }
+.who-icon { width: 30px; height: 30px; color: var(--azul-apoyo); margin-bottom: .25rem; }
+
+/* Encabezado de sección apilado */
+.stack-head { display: grid; gap: .9rem; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.25rem); max-width: 46rem; }
+.stack-head .lead { max-width: 52ch; }
+
+/* Áreas complementarias en mosaico */
+.bento { display: grid; gap: clamp(.9rem, .6rem + 1vw, 1.25rem); }
+.bento .area { border: 0; border-radius: var(--radius); padding: clamp(1.4rem, 1rem + 1.4vw, 2rem); background: var(--marfil); }
+.bento .area:first-child { padding-left: clamp(1.4rem, 1rem + 1.4vw, 2rem); }
+.bento .area-tint { background: #E6EEF3; }
+.bento .area-ivory { background: var(--marfil); }
+.bento .area-feature { background: var(--blanco); border: 1px solid var(--linea-fria); padding: 0; overflow: hidden; }
+.bento .area-feature > :not(.area-media) { margin-inline: clamp(1.4rem, 1rem + 1.4vw, 2rem); }
+.bento .area-feature > :last-child { margin-bottom: clamp(1.4rem, 1rem + 1.4vw, 2rem); }
+.area-media { margin: 0; aspect-ratio: 16 / 10; overflow: hidden; }
+.area-media img { width: 100%; height: 100%; object-fit: cover; object-position: 45% 35%; }
+@media (min-width: 860px) {
+  .bento { grid-template-columns: 1.15fr 1fr; grid-auto-rows: auto; }
+  .bento .area-feature { grid-row: span 2; }
+  .bento .area-feature .area-media { aspect-ratio: 4 / 3; }
+}
+.bento .area-icon { width: 40px; height: 40px; stroke: var(--azul-apoyo); }
+.comp-title { text-transform: none; letter-spacing: -0.01em; font-size: var(--fs-lg); color: var(--azul); }
+
+/* Página de política de privacidad */
+.legal-page { padding-block: clamp(2.5rem, 2rem + 3vw, 5rem); }
+.legal-wrap { max-width: calc(46rem + 2 * var(--gutter)); display: grid; gap: 1rem; }
+.legal-wrap h1 { font-size: var(--fs-xl); }
+.legal-wrap h2 { font-size: var(--fs-lg); margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--linea); }
+.legal-wrap h3 { font-size: var(--fs-md); margin-top: .5rem; }
+.legal-meta { font-size: var(--fs-sm); color: var(--tinta-suave); }
+.legal-list { list-style: disc; padding-left: 1.25rem; display: grid; gap: .4rem; }
+.legal-back { margin-top: 1.5rem; }
+.bento .area.area-feature { padding: 0; }
+.who-list li { align-content: start; }

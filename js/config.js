@@ -94,7 +94,7 @@ window.HEMISFERIO_CONFIG = {
      robots.txt, llms.txt y el bloque JSON-LD de index.html). */
   sitio: {
     url: "https://tolentinocj-afk.github.io/web-hemisferio/",
-    revision: "2026-10-18"
+    revision: "2026-10-19"
   },
 
   modoRevision: false

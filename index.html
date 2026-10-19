@@ -20,6 +20,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preload" href="assets/fonts/DejaVuSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/DejaVuSans.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem("hemisferio-tema");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <link rel="stylesheet" href="css/styles.css">
 <script type="application/ld+json">
 {
@@ -63,6 +64,10 @@
       "jobTitle": "Directora de HEMISFERIO",
       "image": "https://tolentinocj-afk.github.io/web-hemisferio/assets/img/maria-mercedes-tolentino-bejar.jpg",
       "worksFor": { "@id": "https://tolentinocj-afk.github.io/web-hemisferio/#centro" },
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "Universidad Privada Norbert Wiener" },
+        { "@type": "CollegeOrUniversity", "name": "Universidad Nacional Mayor de San Marcos" }
+      ],
       "knowsAbout": ["Neurorehabilitación", "Concepto Bobath", "Terapia física y rehabilitación", "Rehabilitación oncológica", "Rehabilitación de hombro"],
       "hasCredential": [
         {
@@ -71,7 +76,18 @@
           "name": "CTMP N.° 19389",
           "recognizedBy": { "@type": "Organization", "name": "Colegio Tecnólogo Médico del Perú" }
         },
-        { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "Magíster en Salud Pública" },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "Licenciada Tecnóloga Médica, especialidad en Rehabilitación y Fisioterapia",
+          "recognizedBy": { "@type": "CollegeOrUniversity", "name": "Universidad Privada Norbert Wiener" }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "Magíster en Salud Pública",
+          "recognizedBy": { "@type": "CollegeOrUniversity", "name": "Universidad Nacional Mayor de San Marcos" }
+        },
         { "@type": "EducationalOccupationalCredential", "credentialCategory": "certificate", "name": "Formación básica y avanzada en Concepto Bobath" }
       ]
     },
@@ -91,7 +107,7 @@
       "isPartOf": { "@id": "https://tolentinocj-afk.github.io/web-hemisferio/#sitio" },
       "about": { "@id": "https://tolentinocj-afk.github.io/web-hemisferio/#centro" },
       "inLanguage": "es-PE",
-      "dateModified": "2026-10-18"
+      "dateModified": "2026-10-19"
     }
   ]
 }
@@ -123,6 +139,9 @@
       <a class="btn btn-primary nav-cta" href="#contacto" data-cta>Agenda una evaluación</a>
     </nav>
 
+    <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Activar modo oscuro" title="Cambiar entre modo claro y oscuro">
+      <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/></svg><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"/></svg>
+    </button>
     <a class="btn btn-primary btn-sm header-cta" href="#contacto" data-cta>Agenda una evaluación</a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
       <span></span><span></span><span></span>
@@ -158,14 +177,14 @@
   </div>
 </section>
 
-<!-- B2. RESPALDO PROFESIONAL -->
-<section class="creds" aria-label="Respaldo profesional">
-  <ul class="wrap creds-list">
-    <li><svg class="creds-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 15m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5"/><path d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73"/><path d="M6 9l12 0"/><path d="M6 12l3 0"/><path d="M6 15l2 0"/></svg><div><strong>Concepto Bobath</strong><span>Formación básica y avanzada</span></div></li>
-    <li><svg class="creds-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 12h3v4h-3z"/><path d="M10 6h-6a1 1 0 0 0 -1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1 -1v-12a1 1 0 0 0 -1 -1h-6"/><path d="M10 3m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z"/><path d="M14 16h2"/><path d="M14 12h4"/></svg><div><strong>CTMP N.° 19389</strong><span>Colegio Tecnólogo Médico del Perú</span></div></li>
-    <li><svg class="creds-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 9l-10 -4l-10 4l10 4l10 -4v6"/><path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4"/></svg><div><strong>Magíster en Salud Pública</strong><span>Directora con 7 años de experiencia</span></div></li>
-    <li><svg class="creds-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"/></svg><div><strong>San Miguel, Lima</strong><span>Av. La Paz 1150</span></div></li>
-  </ul>
+<!-- B2. FRANJA DE ESPECIALIDADES (en movimiento; estática si el usuario reduce animaciones) -->
+<section class="mq" aria-label="Especialidades de HEMISFERIO">
+  <div class="mq-track">
+    <ul class="mq-group"><li><a href="#neurologica"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8"/><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8"/><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5"/><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0"/><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5"/><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10"/></svg><span>Rehabilitación neurológica</span></a></li><li><a href="#pediatrica"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M18 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M2 5h2.5l1.632 4.897a6 6 0 0 0 5.693 4.103h2.675a5.5 5.5 0 0 0 0 -11h-.5v6"/><path d="M6 9h14"/><path d="M9 17l1 -3"/><path d="M16 14l1 3"/></svg><span>Fisioterapia pediátrica</span></a></li><li><a href="#ortopedica"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3a3 3 0 0 1 3 3a3 3 0 1 1 -2.12 5.122l-4.758 4.758a3 3 0 1 1 -5.117 2.297l0 -.177l-.176 0a3 3 0 1 1 2.298 -5.115l4.758 -4.758a3 3 0 0 1 2.12 -5.122z"/></svg><span>Rehabilitación ortopédica</span></a></li><li><a href="#oncologica"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 21s9.286 -9.841 9.286 -13.841a3.864 3.864 0 0 0 -1.182 -3.008a4.13 4.13 0 0 0 -3.104 -1.144a4.13 4.13 0 0 0 -3.104 1.143a3.864 3.864 0 0 0 -1.182 3.01c0 4 9.286 13.84 9.286 13.84"/></svg><span>Rehabilitación oncológica</span></a></li></ul>
+    <ul class="mq-group" aria-hidden="true"><li><a href="#neurologica" tabindex="-1"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8"/><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8"/><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5"/><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0"/><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5"/><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10"/></svg><span>Rehabilitación neurológica</span></a></li><li><a href="#pediatrica" tabindex="-1"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M18 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M2 5h2.5l1.632 4.897a6 6 0 0 0 5.693 4.103h2.675a5.5 5.5 0 0 0 0 -11h-.5v6"/><path d="M6 9h14"/><path d="M9 17l1 -3"/><path d="M16 14l1 3"/></svg><span>Fisioterapia pediátrica</span></a></li><li><a href="#ortopedica" tabindex="-1"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3a3 3 0 0 1 3 3a3 3 0 1 1 -2.12 5.122l-4.758 4.758a3 3 0 1 1 -5.117 2.297l0 -.177l-.176 0a3 3 0 1 1 2.298 -5.115l4.758 -4.758a3 3 0 0 1 2.12 -5.122z"/></svg><span>Rehabilitación ortopédica</span></a></li><li><a href="#oncologica" tabindex="-1"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 21s9.286 -9.841 9.286 -13.841a3.864 3.864 0 0 0 -1.182 -3.008a4.13 4.13 0 0 0 -3.104 -1.144a4.13 4.13 0 0 0 -3.104 1.143a3.864 3.864 0 0 0 -1.182 3.01c0 4 9.286 13.84 9.286 13.84"/></svg><span>Rehabilitación oncológica</span></a></li></ul>
+    <ul class="mq-group" aria-hidden="true"><li><a href="#neurologica" tabindex="-1"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8"/><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8"/><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5"/><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0"/><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5"/><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10"/></svg><span>Rehabilitación neurológica</span></a></li><li><a href="#pediatrica" tabindex="-1"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M18 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M2 5h2.5l1.632 4.897a6 6 0 0 0 5.693 4.103h2.675a5.5 5.5 0 0 0 0 -11h-.5v6"/><path d="M6 9h14"/><path d="M9 17l1 -3"/><path d="M16 14l1 3"/></svg><span>Fisioterapia pediátrica</span></a></li><li><a href="#ortopedica" tabindex="-1"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3a3 3 0 0 1 3 3a3 3 0 1 1 -2.12 5.122l-4.758 4.758a3 3 0 1 1 -5.117 2.297l0 -.177l-.176 0a3 3 0 1 1 2.298 -5.115l4.758 -4.758a3 3 0 0 1 2.12 -5.122z"/></svg><span>Rehabilitación ortopédica</span></a></li><li><a href="#oncologica" tabindex="-1"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 21s9.286 -9.841 9.286 -13.841a3.864 3.864 0 0 0 -1.182 -3.008a4.13 4.13 0 0 0 -3.104 -1.144a4.13 4.13 0 0 0 -3.104 1.143a3.864 3.864 0 0 0 -1.182 3.01c0 4 9.286 13.84 9.286 13.84"/></svg><span>Rehabilitación oncológica</span></a></li></ul>
+    <ul class="mq-group" aria-hidden="true"><li><a href="#neurologica" tabindex="-1"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8"/><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8"/><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5"/><path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0"/><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5"/><path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10"/></svg><span>Rehabilitación neurológica</span></a></li><li><a href="#pediatrica" tabindex="-1"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M18 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M2 5h2.5l1.632 4.897a6 6 0 0 0 5.693 4.103h2.675a5.5 5.5 0 0 0 0 -11h-.5v6"/><path d="M6 9h14"/><path d="M9 17l1 -3"/><path d="M16 14l1 3"/></svg><span>Fisioterapia pediátrica</span></a></li><li><a href="#ortopedica" tabindex="-1"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3a3 3 0 0 1 3 3a3 3 0 1 1 -2.12 5.122l-4.758 4.758a3 3 0 1 1 -5.117 2.297l0 -.177l-.176 0a3 3 0 1 1 2.298 -5.115l4.758 -4.758a3 3 0 0 1 2.12 -5.122z"/></svg><span>Rehabilitación ortopédica</span></a></li><li><a href="#oncologica" tabindex="-1"><svg class="mq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 21s9.286 -9.841 9.286 -13.841a3.864 3.864 0 0 0 -1.182 -3.008a4.13 4.13 0 0 0 -3.104 -1.144a4.13 4.13 0 0 0 -3.104 1.143a3.864 3.864 0 0 0 -1.182 3.01c0 4 9.286 13.84 9.286 13.84"/></svg><span>Rehabilitación oncológica</span></a></li></ul>
+  </div>
 </section>
 
 <!-- C. PROPÓSITO -->
@@ -333,7 +352,7 @@
         <p class="pro-focus">Enfoque en neurorehabilitación</p>
         <div class="pro-bio">
           <p><span data-config-years hidden>Con <strong data-years></strong> años de experiencia profesional, </span>María Mercedes desarrolla su práctica principalmente en rehabilitación neurológica. Complementa ese enfoque con experiencia en las áreas musculoesquelética, pediátrica, cardiorrespiratoria y oncológica.</p>
-          <p>Cuenta con experiencia clínica en neurorehabilitación y ha participado en la formación de internos del área de Neuro. Su maestría en Salud Pública suma una mirada orientada a la calidad y la mejora de los procesos de atención.</p>
+          <p>Cuenta con experiencia clínica en neurorehabilitación y ha participado en la formación de internos del área de Neuro. Su maestría en Salud Pública, obtenida en la Universidad Nacional Mayor de San Marcos, suma una mirada orientada a la calidad y la mejora de los procesos de atención.</p>
         </div>
       </div>
     </div>
@@ -341,6 +360,16 @@
     <div class="pro-training" aria-labelledby="train-title">
       <h3 id="train-title" class="train-title">Formación</h3>
       <ol class="train-main">
+        <li>
+          <span class="train-area">Formación profesional</span>
+          <strong>Título de Licenciada Tecnóloga Médica, especialidad en Rehabilitación y Fisioterapia</strong>
+          <em>Universidad Privada Norbert Wiener</em>
+        </li>
+        <li>
+          <span class="train-area">Posgrado</span>
+          <strong>Magíster en Salud Pública</strong>
+          <em>Universidad Nacional Mayor de San Marcos</em>
+        </li>
         <li>
           <span class="train-area">Neurorehabilitación</span>
           <strong>Formación básica en Concepto Bobath</strong>
@@ -355,10 +384,6 @@
           <span class="train-area">Rehabilitación oncológica</span>
           <strong>Diplomado en Fisioterapia Oncológica</strong>
           <em>Universidad Nacional Daniel Alcides Carrión</em>
-        </li>
-        <li>
-          <span class="train-area">Salud pública</span>
-          <strong>Magíster en Salud Pública</strong>
         </li>
       </ol>
       <details class="train-more" id="formacion-completa">
@@ -423,62 +448,67 @@
   <div class="wrap">
     <div class="stack-head">
       <h2 id="casos-title">Casos que acompañamos</h2>
-      <p class="lead">Cada persona llega con una historia distinta. Estos son procesos que acompañamos y la forma en que los trabajamos.</p>
+      <p class="lead">Cada persona llega con una historia distinta. Estas historias muestran cómo acompañamos estos procesos.</p>
+      <p class="casos-note">Casos ilustrativos: los nombres y detalles son referenciales para proteger la identidad de nuestros pacientes y no constituyen promesa de resultados.</p>
     </div>
 
     <div class="casos-grid">
       <article class="caso" id="caso-acv" aria-labelledby="caso-acv-t">
         <p class="caso-tag">Rehabilitación neurológica</p>
-        <h3 id="caso-acv-t">Recuperar movimiento después de un ACV</h3>
+        <h3 id="caso-acv-t">Rosa, 64 años</h3>
+        <p class="caso-sub">Recuperar movimiento después de un ACV</p>
         <dl>
-          <dt>Punto de partida</dt>
-          <dd>Personas que, tras un accidente cerebrovascular, presentan debilidad de un lado del cuerpo, alteraciones del equilibrio o dificultad para caminar y realizar sus actividades diarias.</dd>
+          <dt>Cómo llegó</dt>
+          <dd>Rosa llegó tres meses después de un accidente cerebrovascular. Tenía debilidad en el lado derecho del cuerpo, poco equilibrio y necesitaba ayuda para caminar dentro de casa.</dd>
           <dt>Lo que trabajamos</dt>
-          <dd>Control postural, transferencias, equilibrio, marcha y uso funcional del brazo y la mano, con el enfoque del Concepto Bobath y la participación de la familia.</dd>
+          <dd>Con Rosa y su hija trabajamos el control postural, el paso de la cama a la silla, el equilibrio, la marcha y el uso de su brazo y su mano, con el enfoque del Concepto Bobath.</dd>
           <dt>Hacia dónde avanzamos</dt>
-          <dd>Más seguridad y autonomía para levantarse, caminar, vestirse o retomar otras actividades, según la etapa y las metas de cada persona.</dd>
+          <dd>Su meta es moverse por su casa con seguridad y vestirse con menos ayuda. Revisamos sus avances en cada etapa y ajustamos los objetivos con ella.</dd>
         </dl>
         <div class="caso-result" data-caso="acv" hidden></div>
       </article>
 
       <article class="caso" id="caso-facial" aria-labelledby="caso-facial-t">
         <p class="caso-tag">Rehabilitación neurológica</p>
-        <h3 id="caso-facial-t">Recuperar la expresión y la función del rostro en la parálisis facial</h3>
+        <h3 id="caso-facial-t">Jorge, 41 años</h3>
+        <p class="caso-sub">Recuperar la expresión del rostro tras una parálisis facial</p>
         <dl>
-          <dt>Punto de partida</dt>
-          <dd>Personas con parálisis facial periférica que tienen dificultad para cerrar el ojo, sonreír, hablar o comer con normalidad.</dd>
+          <dt>Cómo llegó</dt>
+          <dd>Jorge despertó un día sin poder cerrar bien el ojo izquierdo ni sonreír. Su médico le diagnosticó una parálisis facial periférica y le indicó terapia.</dd>
           <dt>Lo que trabajamos</dt>
-          <dd>Reeducación de la musculatura facial, control y simetría del movimiento, y pautas de cuidado y ejercicios en casa, en coordinación con el tratamiento médico.</dd>
+          <dd>Con Jorge trabajamos la reeducación de los músculos de su rostro, ejercicios frente al espejo para mejorar el control y la simetría, y pautas para cuidar su ojo y practicar en casa, en coordinación con su tratamiento médico.</dd>
           <dt>Hacia dónde avanzamos</dt>
-          <dd>Mejor movilidad, simetría y función del rostro en la comunicación, la alimentación y la vida diaria.</dd>
+          <dd>Su objetivo es volver a hablar, comer y expresarse con naturalidad en su trabajo y con su familia.</dd>
         </dl>
         <div class="caso-result" data-caso="facial" hidden></div>
       </article>
 
       <article class="caso" id="caso-cardiaco" aria-labelledby="caso-cardiaco-t">
         <p class="caso-tag">Rehabilitación neurológica y cardiorrespiratoria</p>
-        <h3 id="caso-cardiaco-t">Volver a la funcionalidad después de un paro cardíaco</h3>
+        <h3 id="caso-cardiaco-t">Luis, 58 años</h3>
+        <p class="caso-sub">Volver a la funcionalidad después de un paro cardíaco</p>
         <dl>
-          <dt>Punto de partida</dt>
-          <dd>Personas que, después de un paro cardíaco y su hospitalización, presentan debilidad, fatiga, pérdida de condición física o secuelas neurológicas que afectan su independencia.</dd>
+          <dt>Cómo llegó</dt>
+          <dd>Luis volvió a casa después de un paro cardíaco y varias semanas de hospitalización. Se cansaba al caminar pocos metros y había perdido fuerza.</dd>
           <dt>Lo que trabajamos</dt>
-          <dd>Movilidad, fuerza, resistencia, equilibrio y control respiratorio, con una progresión gradual y según las indicaciones del equipo médico tratante.</dd>
+          <dd>Con la indicación de su cardiólogo, trabajamos con Luis la movilidad, la fuerza, la resistencia, el equilibrio y el control respiratorio, aumentando el esfuerzo de forma gradual y vigilando cómo lo tolera.</dd>
           <dt>Hacia dónde avanzamos</dt>
-          <dd>Mayor tolerancia al esfuerzo e independencia en las actividades de la vida diaria.</dd>
+          <dd>Su meta es recuperar la confianza para salir a caminar y retomar sus actividades diarias por sí mismo.</dd>
         </dl>
         <div class="caso-result" data-caso="cardiaco" hidden></div>
       </article>
 
       <article class="caso" id="caso-pies" aria-labelledby="caso-pies-t">
         <p class="caso-tag">Fisioterapia pediátrica</p>
-        <h3 id="caso-pies-t">Acompañar a niños con alteraciones en la forma de los pies desde el nacimiento</h3>
+        <h3 id="caso-pies-t">Mateo, 3 meses</h3>
+        <p class="caso-sub">Acompañar el desarrollo de sus pies desde el nacimiento</p>
         <dl>
-          <dt>Punto de partida</dt>
-          <dd>Bebés y niños que nacen con alteraciones en la forma o la posición de los pies, como el pie equino varo, el metatarso aducto o el pie talo valgo.</dd>
+          <dt>Cómo llegó</dt>
+          <dd>Mateo nació con pie equino varo. Su traumatólogo indicó el tratamiento correspondiente y sus padres buscaron acompañamiento para su desarrollo.</dd>
           <dt>Lo que trabajamos</dt>
-          <dd>Movilizaciones, estiramientos y estimulación del desarrollo motor, como complemento del tratamiento indicado por el médico especialista, con orientación a los padres para el trabajo en casa.</dd>
+          <dd>Con Mateo trabajamos movilizaciones suaves, estiramientos y estimulación del desarrollo motor, como complemento del tratamiento médico, y enseñamos a sus padres los ejercicios para hacer en casa.</dd>
           <dt>Hacia dónde avanzamos</dt>
-          <dd>Mejor alineación y movilidad del pie, y un desarrollo motor acorde a cada etapa, hasta lograr el apoyo y la marcha.</dd>
+          <dd>Buscamos favorecer la movilidad de sus pies y un desarrollo motor acorde a cada etapa, hasta lograr el apoyo y sus primeros pasos.</dd>
         </dl>
         <div class="caso-result" data-caso="pies" hidden></div>
       </article>

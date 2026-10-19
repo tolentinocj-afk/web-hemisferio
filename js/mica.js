@@ -292,6 +292,7 @@
   function aboutPro() {
     bot([
       "Te atiende " + (pro.tratamiento ? pro.tratamiento + " " : "") + (pro.nombre || "nuestra directora") + ", directora de HEMISFERIO y licenciada tecnóloga médica en Terapia Física y Rehabilitación" + (pro.registroProfesional ? " (" + pro.registroProfesional.replace("Colegio Tecnólogo Médico del Perú · ", "") + ")" : "") + ".",
+      "Es licenciada tecnóloga médica por la Universidad Privada Norbert Wiener y magíster en Salud Pública por la Universidad Nacional Mayor de San Marcos.",
       "Su práctica se enfoca en la rehabilitación neurológica, con formación básica y avanzada en Concepto Bobath" +
         (pro.aniosExperiencia ? ", y cuenta con " + pro.aniosExperiencia + " años de experiencia profesional." : "."),
       "¿Te gustaría agendar una evaluación con ella?"
@@ -584,6 +585,22 @@
   });
 
   if (launcher) launcher.hidden = false;
+
+  /* WhatsApp y Mica se alternan cada 5 segundos en el mismo lugar.
+     Se detiene al pasar el cursor o enfocar con teclado, con Mica abierta
+     o si la persona prefiere reducir el movimiento. */
+  var waBtn = document.querySelector(".wa-float");
+  if (floaters && launcher && waBtn && !waBtn.hidden && !reduce) {
+    floaters.classList.add("alt-on");
+    var showWa = true;
+    function paint() { waBtn.classList.toggle("is-active", showWa); launcher.classList.toggle("is-active", !showWa); }
+    paint();
+    setInterval(function () {
+      if (document.hidden || !root.hidden || floaters.matches(":hover") || floaters.matches(":focus-within")) return;
+      showWa = !showWa;
+      paint();
+    }, 5000);
+  }
   if (floaters) document.body.classList.add("has-floaters");
   if (window.location.hash === "#mica") open();
 })();

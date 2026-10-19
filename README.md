@@ -1,4 +1,4 @@
-# HEMISFERIO · Sitio web v4
+# HEMISFERIO · Sitio web v5
 
 Sitio estático (HTML, CSS y JavaScript, sin dependencias). Se publica en cualquier hosting estático (Netlify, Vercel, GitHub Pages, cPanel).
 
@@ -18,6 +18,15 @@ build_preview.py                 Genera dist/hemisferio-vista-previa.html (un so
 ```
 
 Revisión interna de datos faltantes: abrir `index.html#revision`.
+
+## Cambios de la versión 5
+
+- Franja en movimiento con las cuatro especialidades (se detiene al pasar el cursor y queda fija si la persona reduce animaciones en su sistema).
+- WhatsApp y Mica se alternan cada 5 segundos en la misma posición; la alternancia se detiene al pasar el cursor, al enfocar con teclado o con Mica abierta.
+- Botón de modo claro y oscuro en el encabezado. La elección se recuerda en el navegador; si no hay elección, sigue la preferencia del sistema.
+- Formación de la directora: Universidad Privada Norbert Wiener (título) y Universidad Nacional Mayor de San Marcos (maestría). Actualizado también en Mica, JSON-LD y llms.txt.
+- Casos narrados con nombre (Rosa, Jorge, Luis y Mateo), marcados como casos ilustrativos con nombres referenciales. Reemplazar por casos reales solo con autorización escrita.
+- El menú pasa a modo celular por debajo de 1280 px para que el encabezado no se desborde.
 
 ## Cambios de la versión 4
 

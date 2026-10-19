@@ -185,6 +185,32 @@
   var y = $("[data-year]");
   if (y) y.textContent = new Date().getFullYear();
 
+  /* ---------- Modo claro u oscuro ---------- */
+  var tbtn = $("[data-theme-toggle]");
+  var rootEl = document.documentElement;
+  try { var saved = localStorage.getItem("hemisferio-tema"); if (saved === "dark" || saved === "light") rootEl.setAttribute("data-theme", saved); } catch (e) {}
+  function currentTheme() {
+    var a = rootEl.getAttribute("data-theme");
+    if (a === "dark" || a === "light") return a;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  function syncTheme() {
+    if (!tbtn) return;
+    var dark = currentTheme() === "dark";
+    tbtn.setAttribute("aria-pressed", String(dark));
+    tbtn.setAttribute("aria-label", dark ? "Activar modo claro" : "Activar modo oscuro");
+  }
+  if (tbtn) {
+    tbtn.addEventListener("click", function () {
+      var next = currentTheme() === "dark" ? "light" : "dark";
+      rootEl.setAttribute("data-theme", next);
+      try { localStorage.setItem("hemisferio-tema", next); } catch (e) {}
+      syncTheme();
+    });
+    syncTheme();
+    if (window.matchMedia) { try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", syncTheme); } catch (e) {} }
+  }
+
   /* ---------- Menú móvil ---------- */
   var toggle = $(".menu-toggle");
   var nav = $("#menu");
